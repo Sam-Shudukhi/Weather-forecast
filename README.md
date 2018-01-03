@@ -7,4 +7,4 @@ Weather API used from FreeCodeCamp.
 - Bootstrap
 - jQuery
 
-[Demo](https://codepen.io/sam-shudukhi/full/vpJYav/)
+# [Demo](https://codepen.io/sam-shudukhi/full/vpJYav/)
