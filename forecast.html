@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
+<style>
+    body {
+  background: #eee;
+}
+
+    header {
+  margin-top:20px;
+}
+</style>
+
+<script>
+    $(document).ready(function() {
+  var degree = 0;
+  var fahrenheit = 0;
+  var c = true;
+  if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+    var url = 'https://fcc-weather-api.glitch.me/api/current?lat='+lat+'&lon='+lon;
+$.ajax({
+   url: url,
+   success: function(data) {
+     // $('#info').html(JSON.stringify(data));
+     $('#location').html(data.name+', '+data.sys.country);
+     degree = data.main.temp;
+     $('#weather').html(degree+' C');
+     $('#icon').html('<img src="'+data.weather[0].icon+'">');
+   } // success
+}); // ajax
+  }); // geolocation
+} // end if navigator
+  
+  $('#convert').on('click',function(){
+    if (c) {
+    fahrenheit = Math.round(9/5 * degree + 32);
+    $('#weather').html(fahrenheit+' F');
+    $('#convert').html('C');
+      c = !c;
+    } else {
+    $('#weather').html(degree+' C');
+    $('#convert').html('F');
+      c = !c;
+    }
+  }); // event 
+}); // ready function 
+</script>
+</head>
+<body>
+        <div class='container text-center'>
+                <header>
+                  <h1 class='text-center'>Forecast</h1>
+                 </header>
+                <hr class='my'>
+          <!--         <div id='info'></div> -->
+                <div class='h3' id='location'></div>
+                <span id='weather'></span>
+                <span id='icon'></span>
+                <div>
+                    <button class='btn btn-primary' id='convert'>F</button>
+                </div>
+               
+              </div>
+</body>
+</html>
