@@ -6,3 +6,5 @@ Weather API used from FreeCodeCamp.
 - HTML
 - Bootstrap
 - jQuery
+
+# Demo {https://codepen.io/sam-shudukhi/full/vpJYav/}
